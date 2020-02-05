@@ -3,7 +3,7 @@ a=f.read()
 l=len(a)
 k=0
 for i in range(0,l):
-    if(a[i]==5):
+    if(a[i]=='5'):
         k=i
         break
 
