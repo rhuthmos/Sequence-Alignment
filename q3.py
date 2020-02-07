@@ -48,12 +48,13 @@ for i in range(len(protein1)):
 		else:
 			sumMatrix[i][j] = 0
 
+
 #compute the matrix
 def findMax(a,b):
 	if (a>len(protein1)-1):
-		return -1, -1
+		return len(protein1), len(protein2)
 	if (b>len(protein2)-1):
-		return -1, -1
+		return len(protein1), len(protein2)
 	else:
 		ansx = a
 		ansy = b
@@ -81,19 +82,34 @@ def findMax(a,b):
 for j in range(len(protein2)-1, -1, -1):
 	for i in range(len(protein1)-1, -1, -1):
 		ax, ay = findMax(i+1, j+1)
-		if (ax!= -1):
+		if (ax<len(protein1) and ay<len(protein2)):
 			sumMatrix[i][j] += sumMatrix[ax][ay]
 
 out1 = ''
 out2 = ''
 
-i = 0
-j = 0
+i = -1
+j = -1
 
 while(i<len(protein1) and j<len(protein2)):
-	ax, ay = sumMatrix(i+1. j+1)
+	ax, ay = findMax(i+1, j+1)
+	if (ax==i+1 and ax<len(protein1) and ay<len(protein2)):
+		#gap in protein1
+		out2 += protein2[j+1:ay+1]
+		l = ay-j
+		out1+=(" "*(l-1) + protein1[ax])
+		
+	elif(ay == j+1 and ax<len(protein1) and ay<len(protein2)):
+		#gap in protein2
+		out1 += protein1[i+1:ax+1]
+		l = ax - i
+		out2+=(" "*(l-1) + protein2[ay])
 	
+	
+	j = ay
+	i = ax
 
+print(out2)
+print(out1)
 
-
-print(sumMatrix)
+#print(sumMatrix)
