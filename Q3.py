@@ -18,10 +18,10 @@ with open(filepath) as fp:
 			if (counter == 0 or counter==2):
 				counter+=1
 		elif (counter==1):
-			protein1 = line
+			protein1 = line[:-1]
 			counter+=1
 		elif (counter==3):
-			protein2 = line
+			protein2 = line[:-1]
 			break
 		line = fp.readline()
 
@@ -49,7 +49,21 @@ for i in range(len(protein2)):
 		else:
 			sumMatrix[i][j] = 0
 
+dotplot = copy.deepcopy(sumMatrix)
+protein1list =  [" "] + [char for char in protein1]
+dotplot.insert(0, protein1list)
 
+for i in range(1, len(dotplot)):
+	dotplot[i].insert(0, protein2[i-1])
+	for j in range(1, len(dotplot[i])):
+		if (sumMatrix[i-1][j-1] == 1):
+			dotplot[i][j] = "."
+		else:
+			dotplot[i][j] = " "
+print(dotplot)
+with open("dotplot.txt", "w") as txt_file:
+    for line in dotplot:
+        txt_file.write(" ".join(line) + "\n")
 
 
 #compute the matrix
@@ -89,6 +103,22 @@ for j in range(len(protein1)-1, -1, -1):
 		ax, ay = findMax(i+1, j+1)
 		if (ax<len(protein2) and ay<len(protein1)):
 			sumMatrix[i][j] += sumMatrix[ax][ay]
+
+
+sumMatrixOut = copy.deepcopy(sumMatrix)
+protein1list =  [" "] + [" " + char for char in protein1]
+sumMatrixOut.insert(0, protein1list)
+
+for i in range(1, len(sumMatrixOut)):
+	sumMatrixOut[i].insert(0, protein2[i-1])
+	for j in range(1, len(sumMatrixOut[0])):
+		sumMatrixOut[i][j] = '0'*(2 - len(str(sumMatrix[i-1][j-1]))) + str(sumMatrix[i-1][j-1])
+print(sumMatrixOut)
+with open("sumMatrixOut.txt", "w") as txt_file:
+    for line in sumMatrixOut:
+        txt_file.write(" ".join(line) + "\n")
+
+        
 
 out1 = ''
 out2 = ''
