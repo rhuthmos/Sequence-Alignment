@@ -27,8 +27,8 @@ with open(filepath) as fp:
 
 protein1 = str(protein1)
 protein2 = str(protein2)
-print(protein1)
-print(protein2)
+print("PROTEIN1 : ",protein1)
+print("PROTEIN2 : ", protein2)
 
 #sumMatrix = np.empty((len(protein1), len(protein2)), dtype = 'S1')
 sumMatrix = []
@@ -60,6 +60,7 @@ for i in range(1, len(dotplot)):
 			dotplot[i][j] = "."
 		else:
 			dotplot[i][j] = " "
+print("DOTPLOT: ")
 print(dotplot)
 with open("dotplot.txt", "w") as txt_file:
     for line in dotplot:
@@ -113,6 +114,8 @@ for i in range(1, len(sumMatrixOut)):
 	sumMatrixOut[i].insert(0, protein2[i-1])
 	for j in range(1, len(sumMatrixOut[0])):
 		sumMatrixOut[i][j] = '0'*(2 - len(str(sumMatrix[i-1][j-1]))) + str(sumMatrix[i-1][j-1])
+
+print("SUM-MATRIX :")
 print(sumMatrixOut)
 with open("sumMatrixOut.txt", "w") as txt_file:
     for line in sumMatrixOut:
@@ -146,5 +149,20 @@ while(i<len(protein2) and j<len(protein1)):
 
 print(out1)
 print(out2)
+
+score = 0
+
+for i in range(len(out1)):
+	if (out1[i]==out2[i]):
+		score+=1
+print("Total Score : ", score)
+print("Total Length : ", len(out1))
+print("Percentage identity : ", (score/len(out1))*100)
+
+with open("Alignment.txt", "w") as txt_file:
+    txt_file.write(out1 + "\n")
+    txt_file.write(out2 + "\n")
+    
+
 
 #print(sumMatrix)
