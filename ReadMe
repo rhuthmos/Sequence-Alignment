@@ -5,3 +5,9 @@ python Iqb1_q1.py -i input_file -o output_file
 The corresponding protien sequence shall be printed on the cosole as well as the output text file. The description has been kept same as
 that in the input file. The 'stop codones' have been represented with a '_'. 
 
+Q3.py
+INPUT FORMAT USING COMMAND LINE:
+python3 Q3.py input_file_path
+
+The corresponding dotplot, sumMatrix, alignment shall be printed in dotplot.txt, sumMatrixOut.txt and Alignment.txt respectively.
+Percentage identity of the aligned sequences shall be displayed on the console.
