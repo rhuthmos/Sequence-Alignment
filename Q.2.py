@@ -1,12 +1,8 @@
 import sys
 print(sys.argv)
-temp = "C:/Users/dell/Desktop/IQB/GROUPWISE -IQB/Group25/"
-f = open(temp+sys.argv[2], "r")
+f = open(sys.argv[2], "r")
 a=f.read()
 l=len(a)
-
-print(l)
-
 
 # FOR HEADER
 k=0 
