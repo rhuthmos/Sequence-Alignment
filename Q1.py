@@ -1,14 +1,20 @@
-f = open("DNA.txt", "r")
+import sys
+
+argl = sys.argv
+inp=argl[2]
+out = argl[4]
+
+f = open(inp, "r")
 a=f.read()
 l=len(a)
 k=0
 for i in range(0,l):
-    if(a[i]=='5'):
+    if(a[i]=='\n'):
         k=i
         break
 
 R=''
-for j in range(k+2,l):
+for j in range(k,l):
     if(a[j]=='T'):
         R=R+'U'
     elif(a[j]=='\n'):
@@ -32,5 +38,12 @@ for q in range(0,LoR):
         prot = prot + GC[cod]
 
 print(prot)
+
+f2 = open(out,"w")
+
+L = f2.write(a[0:k]+'\n'+prot)
+f2.close()
+
+
 
 
