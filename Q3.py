@@ -1,10 +1,9 @@
 import numpy as np
 import copy
-file = open("./Group26/protein.fa", "r")
-#file2=file.read()
-#print(file2)
+import sys
 
-filepath = './Group26/protein.fa'
+argl = sys.argv
+filepath=argl[1]
 
 protein1 = ''
 protein2 = ''
